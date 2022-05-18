@@ -9,9 +9,9 @@
   #- `FRONT_PORT`: padrão `3000`.
     #- *(Docker)* Aqui você deve indicar a porta que você definiu internamente no container do `front-end`;
 
-FROM node:14-alpine AS tests
-WORKDIR /tests
+FROM node:14-alpine
+WORKDIR /
 COPY . . 
 ADD node_modules.tar.gz .
 EXPOSE 3000
-RUN npm install
+ENTRYPOINT [ "npm", "install" ]

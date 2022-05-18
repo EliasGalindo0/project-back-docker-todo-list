@@ -11,8 +11,8 @@
     #- *(Docker)* Aqui você deve indicar a porta que você definiu internamente no container do `back-end`;
 
 FROM node:14-alpine
-WORKDIR /front-end
+WORKDIR /
 COPY . . 
 ADD node_modules.tar.gz .
 EXPOSE 3000
-RUN npm install
+ENTRYPOINT [ "npm", "install" ]
