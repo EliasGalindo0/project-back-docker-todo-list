@@ -5,8 +5,8 @@
 #- Por padrão, essa aplicação funciona a partir da porta `3001`;
 
 FROM node:14-alpine
-WORKDIR /todo-app/back-end
-ADD node_modules.tar.gz /todo-app/back-end
-COPY . .
 EXPOSE 3001
-ENTRYPOINT [ "npm", "start" ]
+WORKDIR /
+ADD node_modules.tar.gz ./
+COPY . .
+CMD [ "npm", "start" ]

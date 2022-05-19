@@ -10,7 +10,7 @@
     #- *(Docker)* Aqui você deve indicar a porta que você definiu internamente no container do `front-end`;
 
 FROM mjgargani/puppeteer:trybe1.0
-WORKDIR /todo-app/tests
-ADD node_modules.tar.gz /todo-app/tests/
+WORKDIR /
+ADD node_modules.tar.gz ./
 COPY . . 
-ENTRYPOINT [ "npm", "test" ]
+CMD [ "npm", "test" ]
