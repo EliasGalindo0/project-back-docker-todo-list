@@ -1,26 +1,28 @@
 version: '3'
 
 services:
-  todotests:
-    image: todotests
-    depends_on:
-      - todoback
-      - todofront
-    environment:
-      - FRONT_HOST=todofrontend
-
-  todofront:
-    image: todofrontend
-    depends_on:
-      - todoback
-    environment:
-      - REACT_APP_API_HOST=todobackend
-      - DOCKER_DEFAULT_PLATFORM=linux/amd64
-    ports:
-      - 3000:3000
-
   todoback:
     image: todobackend
     ports:
       - 3001:3001
-    platform: linux/amd64
+    restart: always
+  
+  todofront:
+    depends_on:
+      - todoback
+    image: todofrontend
+    environment:
+      - REACT_APP_API_HOST=todoback
+      - DOCKER_DEFAULT_PLATFORM=linux/amd64
+    ports:
+      - 3000:3000
+    restart: always
+
+  todotests:
+    depends_on:
+      - todofront
+      - todoback
+    image: todotests
+    environment:
+      - FRONT_HOST=todofront
+    restart: always

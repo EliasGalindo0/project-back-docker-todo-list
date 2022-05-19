@@ -9,9 +9,8 @@
   #- `FRONT_PORT`: padrão `3000`.
     #- *(Docker)* Aqui você deve indicar a porta que você definiu internamente no container do `front-end`;
 
-FROM node:14-alpine
-WORKDIR /
+FROM mjgargani/puppeteer:trybe1.0
+WORKDIR /todo-app/tests
+ADD node_modules.tar.gz /todo-app/tests/
 COPY . . 
-ADD node_modules.tar.gz .
-EXPOSE 3000
-ENTRYPOINT [ "npm", "install" ]
+ENTRYPOINT [ "npm", "test" ]
